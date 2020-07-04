@@ -1,0 +1,22 @@
+cd /var/jenkins_home/workspace/pcei-daily/locationAPI/nodejs 
+docker build -t pcei_api_node . 
+cid=$(docker ps -aq --filter name=pcei_api_node)
+if [ ! -z $cid ]
+then
+	docker rm -f $cid	# remove the docker from a previous run if it's still there
+fi
+
+docker run --rm --name pcei_api_node --detach -p 8081:8081 pcei_api_node 
+
+sleep 3
+
+cid=$(docker ps -aq --filter name=pcei_api_node)
+if [ ! -z $cid ]
+then
+	docker stop $cid	# stop the container 
+fi
+
+# repository:https://gerrit.akraino.org/r/pcei
+# build periodically
+#TZ=America/Los_Angeles
+#H 12 * * *

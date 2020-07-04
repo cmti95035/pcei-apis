@@ -1,0 +1,1 @@
+echo "2" | docker run -i --rm --network host aquasec/kube-hunter

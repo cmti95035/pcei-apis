@@ -1,0 +1,29 @@
+docker pull vuls/go-cve-dictionary
+docker pull vuls/goval-dictionary
+docker pull vuls/gost
+docker pull vuls/vuls
+
+cd /vuls-scan
+#rm -rf go-cve-dictionary-log goval-dictionary-log gost-log
+if [ ! -d go-cve-dictionary-log ]
+then 
+	mkdir go-cve-dictionary-log
+fi
+
+if [ ! -d goval-dictionary-log ]
+then 
+	mkdir goval-dictionary-log
+fi
+
+if [ ! -d gost-log ]
+then 
+	mkdir gost-log
+fi
+
+
+#for i in `seq 2002 $(date +"%Y")`; do docker run --rm -i -v $PWD:/vuls -v $PWD/go-cve-dictionary-log:/var/log/vuls vuls/go-cve-dictionary fetchnvd -years $i; done
+#docker run --rm -i -v $PWD:/vuls -v $PWD/goval-dictionary-log:/var/log/vuls vuls/goval-dictionary fetch-redhat 5 6 7
+#docker run --rm -i -v $PWD:/vuls -v $PWD/gost-log:/var/log/gost vuls/gost fetch redhat
+
+#docker run --rm -i --privileged -v /home/ubuntu/jenkins/data:/inception -v /home/ubuntu/jenkins/data/.ssh:/root/.ssh:ro -v /vuls-scan:/vuls -v /vuls-scan/vuls-log:/var/log/vuls -v /etc/localtime:/etc/localtime:ro vuls/vuls scan -config /inception/conf/config
+cat vuls.log
