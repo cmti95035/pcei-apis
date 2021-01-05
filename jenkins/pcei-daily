@@ -1,5 +1,5 @@
 cd /var/jenkins_home/workspace/pcei-daily/locationAPI/nodejs 
-docker build -t pcei_api_node . 
+docker build --network host -t pcei_api_node . 
 cid=$(docker ps -aq --filter name=pcei_api_node)
 if [ ! -z $cid ]
 then
